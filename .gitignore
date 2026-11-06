@@ -1,0 +1,16 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+public/create-character/v2/
+public/generator/new-assets/
+public/create-character/assets/v3/
+public/create-character/assets/v4/
+outputs/
+
+!.env.design

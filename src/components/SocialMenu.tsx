@@ -1,0 +1,6 @@
+import {useEffect,useRef,useState} from 'react';
+import {Globe2,ArrowUpRight,ChevronUp} from 'lucide-react';
+import {SOCIAL_LINKS} from '../socialLinks';
+import {useLocale} from '../i18n';
+import {r12Copy} from '../r12Text';
+export function SocialMenu(){const {locale}=useLocale(),c=r12Copy(locale);const [open,setOpen]=useState(false),[notice,setNotice]=useState('');const root=useRef<HTMLDivElement>(null);useEffect(()=>{const f=(e:PointerEvent)=>{if(!root.current?.contains(e.target as Node))setOpen(false)};const k=(e:KeyboardEvent)=>{if(e.key==='Escape')setOpen(false)};document.addEventListener('pointerdown',f);document.addEventListener('keydown',k);return()=>{document.removeEventListener('pointerdown',f);document.removeEventListener('keydown',k)}},[]);return <div ref={root} className="r12-social-menu"><button onClick={()=>setOpen(!open)} aria-expanded={open}><Globe2 size={19}/><span>{c.social}</span><ChevronUp size={13}/></button>{open&&<div role="menu">{SOCIAL_LINKS.map(link=>link.url?<a role="menuitem" key={link.name} href={link.url} target="_blank" rel="noopener noreferrer">{link.name}<ArrowUpRight size={14}/></a>:<button role="menuitem" key={link.name} onClick={()=>setNotice(link.name+' · '+c.pending)}>{link.name}<span>—</span></button>)}{notice&&<p role="status">{notice}</p>}</div>}</div>}

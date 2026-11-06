@@ -1,0 +1,27 @@
+/* Desktop-only polish; the mobile cascade is intentionally unchanged. */
+@media (min-width:1024px) {
+  .r12-chrome .r12-header-tools { margin-left:auto; flex:0 0 auto; }
+
+  /* Keep cover/text compositing stable instead of scaling their shared edge. */
+  .mio-character-card .mio-card-art,
+  .mio-story-card .mio-story-art,
+  .mio-collection-card .mio-collection-art { isolation:isolate; overflow:hidden; }
+  .mio-character-card .mio-card-art > img,
+  .mio-character-card:hover .mio-card-art > img,
+  .mio-character-card .mio-card-art > video,
+  .mio-collection-card .mio-collection-art > img,
+  .mio-collection-card:hover .mio-collection-art > img {
+    display:block; scale:1!important; transform:none!important;
+  }
+  .mio-story-card .mio-story-art > .mio-story-cover,
+  .mio-story-card:hover .mio-story-art > .mio-story-cover,
+  .mio-collection-card .mio-collection-art > .mio-story-cover,
+  .mio-collection-card:hover .mio-collection-art > .mio-story-cover {
+    scale:1!important; transform:translateY(-50%)!important;
+  }
+  .mio-character-card .mio-card-art::after,
+  .mio-story-card .mio-story-art::after,
+  .mio-collection-card .mio-collection-art::after {
+    bottom:0; pointer-events:none; transform:none; transition:none;
+  }
+}

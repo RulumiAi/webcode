@@ -1,0 +1,11 @@
+import {worldEntryCount} from './storyWorlds';
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {GENRE_IDS,STORY_CARDS,formatHeat,genreLabel,hubCopy,storyBlurb,storyGoal} from './discoveryCatalog';
+import {getRouteFromPath,getPathForTab,isPublicDocumentPath} from './seo';
+import type {Locale} from './types';
+const locales:Locale[]=['en','zh-CN','ja','ko','es','pt'];
+test('all six locales cover the four content categories, genre labels, and story detail copy',()=>{for(const locale of locales){const copy=hubCopy(locale);assert.ok(Object.values(copy).every(x=>typeof x==='string'&&x.trim().length>0));assert.equal(new Set([copy.characters,copy.stories,copy.photos,copy.videos]).size,4);for(const id of GENRE_IDS)assert.notEqual(genreLabel(id,locale),id);for(const story of STORY_CARDS){assert.ok(storyBlurb(story.cover,locale));assert.ok(storyGoal(story.cover,locale));}}});
+test('story genre filters use known tags and the six original covers map uniquely',()=>{assert.equal(new Set(STORY_CARDS.map(s=>s.id)).size,STORY_CARDS.length);assert.equal(new Set(STORY_CARDS.map(s=>s.cover)).size,6);for(const story of STORY_CARDS){assert.equal(story.characters,story.cast.length);assert.equal(story.entries,worldEntryCount(story));assert.equal(new Set(story.cast).size,story.cast.length);assert.ok(story.cast.every(i=>i>=0&&i<12));assert.ok(story.genres.every(g=>(GENRE_IDS as readonly string[]).includes(g)));}assert.deepEqual(STORY_CARDS.filter(s=>s.genres.includes('cyberpunk')).map(s=>s.id),['neon-exile']);});
+test('popularity is compact and safely handles absent or invalid server metrics',()=>{assert.equal(formatHeat(0,'en'),'0');assert.equal(formatHeat(-3,'en'),'0');assert.equal(formatHeat(NaN,'en'),'0');assert.match(formatHeat(186200,'en'),/186/);assert.match(formatHeat(186200,'zh-CN'),/万/);});
+test('personal center has a stable private route',()=>{assert.equal(getPathForTab('profile'),'/profile');assert.deepEqual(getRouteFromPath('/profile'),{kind:'tab',tab:'profile'});assert.equal(isPublicDocumentPath('/profile'),false);});

@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {validPreferences,readPreferences,savePreferences,ENTRY_KEY} from './entryPreferences';
+import {entryCopy} from './entryCopy';
+test('adult entry requires a known age and gender and allows non-disclosure',()=>{assert.equal(validPreferences({age:'under18',gender:'female'}),false);assert.equal(validPreferences({age:'99',gender:'male'}),false);assert.equal(validPreferences({age:'25-34',gender:'private'}),true);assert.equal(validPreferences({age:'18-24',gender:'other'}),false)});
+test('entry preferences persist, notify profile, and reject corrupt records',()=>{const values=new Map<string,string>();let notified=0;Object.assign(globalThis,{localStorage:{getItem:(k:string)=>values.get(k)||null,setItem:(k:string,v:string)=>values.set(k,v)},window:{dispatchEvent:()=>{notified++}}});assert.equal(readPreferences(),null);savePreferences({age:'25-34',gender:'private'});assert.deepEqual(readPreferences(),{age:'25-34',gender:'private'});assert.equal(notified,1);assert.throws(()=>savePreferences({age:'under18',gender:'female'}));values.set(ENTRY_KEY,'{broken');assert.equal(readPreferences(),null)});
+test('six languages cover onboarding, demo sign-in and achievement labels',()=>{for(const locale of ['en','zh-CN','ja','ko','es','pt'] as const){const c=entryCopy(locale);for(const value of Object.values(c))assert.ok(value.trim().length>0);assert.notEqual(c.age,c.gender)}});

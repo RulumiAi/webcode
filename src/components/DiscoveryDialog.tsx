@@ -1,0 +1,9 @@
+import {useEffect,useRef,type ReactNode} from 'react';
+import {createPortal} from 'react-dom';
+import {X} from 'lucide-react';
+import {useLocale} from '../i18n';
+export function DiscoveryDialog({title,onClose,children,className='',workspace=false,dismissible=true}:{title:string;onClose:()=>void;children:ReactNode;className?:string;workspace?:boolean;dismissible?:boolean}){
+ const {t}=useLocale();const root=useRef<HTMLElement>(null);const close=useRef(onClose);close.current=onClose;
+ useEffect(()=>{const previous=document.activeElement as HTMLElement;const overflow=document.body.style.overflow;document.body.style.overflow='hidden';root.current?.querySelector<HTMLButtonElement>('button')?.focus();const key=(e:KeyboardEvent)=>{if(e.key==='Escape')close.current();if(e.key==='Tab'){const list=Array.from<HTMLElement>((root.current?.querySelector<HTMLElement>('[data-dialog-focus-root]')||root.current)?.querySelectorAll<HTMLElement>('button:not([disabled]),a[href],input,video[controls],select,[tabindex="0"],summary')||[]);const first=list[0],last=list.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}}};document.addEventListener('keydown',key);return()=>{document.body.style.overflow=overflow;document.removeEventListener('keydown',key);previous?.focus()}},[]);
+ return createPortal(<div className={`mio-hub-overlay ${workspace?'mio-worldbook-overlay':''}`} onClick={e=>{if(e.target===e.currentTarget)onClose()}}><section ref={root} role="dialog" aria-modal="true" aria-label={title} className={`mio-hub-dialog ${className}`}>{!workspace&&dismissible&&<button className="mio-hub-close" onClick={onClose} aria-label={t('common.close')}><X size={20}/></button>}{children}</section></div>,document.body)
+}

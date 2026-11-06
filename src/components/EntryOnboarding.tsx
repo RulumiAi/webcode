@@ -1,0 +1,11 @@
+import {useState} from 'react';
+import {ArrowRight,Check,Heart} from 'lucide-react';
+import {useLocale} from '../i18n';
+import {AGE_OPTIONS,GENDER_OPTIONS,readPreferences,savePreferences,type EntryPreferences} from '../entryPreferences';
+import {entryCopy} from '../entryCopy';
+import {r12Copy} from '../r12Text';
+import {DiscoveryDialog} from './DiscoveryDialog';
+export function EntryOnboarding({editing=false,onComplete,onClose}:{editing?:boolean;onComplete:()=>void;onClose:()=>void}){
+ const {locale}=useLocale(),c=entryCopy(locale),v=r12Copy(locale);const saved=readPreferences();const [age,setAge]=useState<EntryPreferences['age']|''>(saved?.age||''),[gender,setGender]=useState<EntryPreferences['gender']|''>(saved?.gender||''),[error,setError]=useState('');
+ return <DiscoveryDialog dismissible={editing} title={c.welcome} onClose={editing?onClose:()=>{}} className={`mio-entry-dialog r12-entry ${editing?'':'required'}`}><div className="mio-entry-art"><img src="/mio/anime/mizuki.webp" alt=""/><div><Heart size={28}/><strong>rulumi.ai</strong><p>YOUR STORY, YOUR SUMMER.</p></div></div><div className="mio-entry-form"><small className="r12-eyebrow">WELCOME TO RULUMI · 18+</small><h2>{c.welcome}</h2><p>{c.hint}</p><fieldset><legend>{v.age}</legend><div className="mio-entry-options" role="group" aria-label={v.age}>{AGE_OPTIONS.map(value=><button className={age===value?'selected':''} key={value} aria-pressed={age===value} onClick={()=>{setAge(value);setError('')}}><span>{value==='under18'?c.under:value.replace('-',' – ')}</span>{age===value&&<Check size={15}/>}</button>)}</div></fieldset><fieldset><legend>{v.gender}</legend><div className="mio-entry-options" role="group" aria-label={v.gender}>{GENDER_OPTIONS.map(value=><button className={gender===value?'selected':''} key={value} aria-pressed={gender===value} onClick={()=>setGender(value)}><span>{c[value]}</span>{gender===value&&<Check size={15}/>}</button>)}</div></fieldset><p className="mio-entry-error" role="status">{age==='under18'?c.blocked:error}</p><footer><button className="mio-entry-continue" disabled={!age||age==='under18'||!gender} onClick={()=>{try{savePreferences({age:age as EntryPreferences['age'],gender:gender as EntryPreferences['gender']});onComplete()}catch{setError(c.saveError)}}}>{v.enter}<ArrowRight size={17}/></button></footer></div></DiscoveryDialog>
+}

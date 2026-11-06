@@ -1,0 +1,25 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {designPreviewResponse,previewCharacters} from './previewApi';
+import {LOCALE_STORAGE_KEY} from './i18n';
+const data=new Map<string,string>();
+Object.defineProperty(globalThis,'localStorage',{value:{getItem:(k:string)=>data.get(k)||null,setItem:(k:string,v:string)=>data.set(k,v),removeItem:(k:string)=>data.delete(k)},configurable:true});
+test('preview data switches Japanese and Korean without changing character identity',()=>{localStorage.setItem(LOCALE_STORAGE_KEY,'ja');const ja=previewCharacters();localStorage.setItem(LOCALE_STORAGE_KEY,'ko');const ko=previewCharacters();assert.equal(ja[0].id,ko[0].id);assert.notEqual(ja[0].name,ko[0].name);assert.ok(ko.every(c=>c.age>=25))});
+test('preview search and gender filters operate together',async()=>{localStorage.setItem(LOCALE_STORAGE_KEY,'en');const r=await designPreviewResponse('/characters/discovery/?query=Ren&gender=male',{});const p=await r.json();assert.equal(p.total,1);assert.ok(p.items.every((c:{name:string;gender:string})=>c.name.includes('Ren')&&c.gender==='male'))});
+test('preview favorites persist and can be removed',async()=>{await designPreviewResponse('/characters/mio-0/favorite/',{method:'PUT'});let p=await(await designPreviewResponse('/users/me/favorites/',{})).json();assert.equal(p.total,1);await designPreviewResponse('/characters/mio-0/favorite/',{method:'DELETE'});p=await(await designPreviewResponse('/users/me/favorites/',{})).json();assert.equal(p.total,0)});
+test('chat uses the existing SSE contract and preserves message order',async()=>{const thread=await(await designPreviewResponse('/chat/threads/',{method:'POST',body:{characterId:'mio-0'}})).json();const stream=await designPreviewResponse(`/chat/threads/${thread.id}/messages/stream/`,{method:'POST',body:{content:'Hello'}});const s=await stream.text();assert.ok(s.includes('event: message.created'));assert.ok(s.includes('event: message.completed'));const p=await(await designPreviewResponse(`/chat/threads/${thread.id}/messages/`,{})).json();assert.deepEqual(p.items.map((m:{role:string})=>m.role),['assistant','user','assistant']);assert.equal(p.items[1].content,'Hello')});
+test('preview refuses payment writes and unknown mutations',async()=>{const r=await designPreviewResponse('/payments/orders/',{method:'POST',body:{}});assert.equal(r.status,503);assert.equal((await r.json()).code,'PREVIEW_UNAVAILABLE')});
+test('fresh anime characters keep existing identities and resolve through search and details',async()=>{
+ localStorage.setItem(LOCALE_STORAGE_KEY,'en');
+ const chars=previewCharacters();
+ assert.equal(chars.length,18);
+ assert.equal(new Set(chars.map(c=>c.id)).size,18);
+ const photos=chars.filter(c=>c.cardPreview.image?.url.startsWith('/mio/fresh-anime/'));
+ assert.equal(photos.length,6);
+ assert.ok(photos.every(c=>c.age>=26&&c.style==='anime'&&c.chatCount>0&&c.filterTags.every(tag=>typeof tag.slug==='string')));
+ const detail=await(await designPreviewResponse('/characters/mio-12/',{})).json();
+ assert.equal(detail.name,'Nao · Hydrangea Walk');
+ const search=await(await designPreviewResponse('/characters/discovery/?query=Hydrangea&style=anime&gender=female',{})).json();
+ assert.equal(search.total,1);
+ assert.equal(search.items[0].id,'mio-12');
+});
