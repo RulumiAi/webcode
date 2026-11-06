@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {INITIAL_MEDIA_ACCESS,canViewMedia,purchaseMedia,readMediaAccess} from './mediaAccess';
+import {mediaCopy} from './mediaCopy';
+import {hubCopy} from './discoveryCatalog';
+import type {Locale} from './types';
+test('free access boundaries match comics, albums and videos',()=>{for(const kind of ['comics','videos'] as const){assert.equal(canViewMedia(kind,0,'x',INITIAL_MEDIA_ACCESS),true);assert.equal(canViewMedia(kind,1,'x',INITIAL_MEDIA_ACCESS),false)}assert.equal(canViewMedia('photos',1,'album',INITIAL_MEDIA_ACCESS),true);assert.equal(canViewMedia('photos',2,'album',INITIAL_MEDIA_ACCESS),false)});
+test('album unlock covers all images and is charged only once',()=>{const r=purchaseMedia(INITIAL_MEDIA_ACCESS,'photos:campus:all',30);assert.equal(r.state.balance,70);for(let i=0;i<6;i++)assert.equal(canViewMedia('photos',i,'photos:campus:all',r.state),true);assert.equal(purchaseMedia(r.state,'photos:campus:all',30).state.balance,70);assert.equal(canViewMedia('photos',3,'photos:other:all',r.state),false)});
+test('comic groups and video clips unlock separately; insufficient funds do not change balance',()=>{const r=purchaseMedia(INITIAL_MEDIA_ACCESS,'comics:campus:1',20);assert.equal(canViewMedia('comics',1,'comics:campus:1',r.state),true);assert.equal(canViewMedia('comics',2,'comics:campus:2',r.state),false);const poor={balance:5,unlocked:[]};const failed=purchaseMedia(poor,'videos:campus:2',20);assert.equal(failed.error,'insufficient');assert.deepEqual(failed.state,poor);assert.equal(purchaseMedia(poor,'x',-5).error,'invalid')});
+test('persisted access validates corrupt data and preserves prior unlocks',()=>{assert.deepEqual(readMediaAccess({getItem:()=>'{broken'}),INITIAL_MEDIA_ACCESS);assert.deepEqual(readMediaAccess({getItem:()=>JSON.stringify({balance:-1,unlocked:[]})}),INITIAL_MEDIA_ACCESS);assert.deepEqual(readMediaAccess({getItem:()=>JSON.stringify({balance:70,unlocked:['album']})}),{balance:70,unlocked:['album']})});
+test('all six locales include comics and complete unlock interface copy',()=>{for(const l of ['en','zh-CN','ja','ko','es','pt'] as Locale[]){assert.ok(hubCopy(l).comics);assert.ok(Object.values(mediaCopy(l)).every(v=>typeof v==='string'&&v.trim()))}});

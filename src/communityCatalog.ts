@@ -1,0 +1,8 @@
+import type {Character} from './types';
+import {previewCharacters,DESIGN_PREVIEW} from './previewApi';
+import {STORY_CARDS,storyBlurb,type ContentKind} from './discoveryCatalog';
+import {isMaturePreviewCharacter} from './matureCatalog';
+export type RankedKind='characters'|'stories'|'photos'|'videos';
+export const RANKED_KINDS:RankedKind[]=['characters','stories','photos','videos'];
+export function categoryLabel(kind:RankedKind,locale:string){const labels:Record<string,string[]>={'zh-CN':['角色','剧情','图片','视频'],ja:['キャラクター','ストーリー','フォト','動画'],ko:['캐릭터','스토리','사진','영상'],en:['Characters','Stories','Photos','Videos']};return (labels[locale]||labels.en)[RANKED_KINDS.indexOf(kind)]}
+export function communityItems(kind:RankedKind,locale:any,mature:boolean,characters:Character[]=[]){const people=previewCharacters();if(kind==='characters')return (DESIGN_PREVIEW?people.filter(p=>mature||!isMaturePreviewCharacter(p.id)).map(p=>({id:p.id,name:p.name,cover:p.cardPreview.image?.url||'',bio:p.bio,author:p.creator.handle,creator:p.creator.id,heat:p.chatCount,date:p.createdAt,storyCover:undefined as number|undefined})):characters.map(p=>({id:p.id,name:p.name,cover:p.avatar,bio:p.description||'',author:String(p.author),creator:p.creatorId,heat:p.chatCount,date:'',storyCover:undefined as number|undefined}))).sort((a,b)=>b.heat-a.heat);return DESIGN_PREVIEW?STORY_CARDS.map(s=>({id:s.id,name:s.title,cover:kind==='photos'?people[12+s.cover]?.cardPreview.image?.url||'':people[s.cast[0]]?.cardPreview.image?.url||'',bio:storyBlurb(s.cover,locale),author:'@rulumi_studio',creator:undefined as string|undefined,heat:s.heat,date:'',storyCover:kind==='stories'||kind==='videos'?s.cover:undefined})).sort((a,b)=>b.heat-a.heat):[]}

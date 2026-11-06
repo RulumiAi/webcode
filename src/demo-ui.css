@@ -1,0 +1,418 @@
+html[data-design-preview] {
+  --demo-canvas: #131019;
+  --demo-sidebar: #1c1726;
+  --demo-surface: #272033;
+  --demo-raised: #322b3d;
+  --demo-text: #f2eef7;
+  --demo-muted: #9c91ac;
+  --demo-brand: #b77af4;
+  --demo-paid: #e891b8;
+  --demo-ink: #1a1024;
+  --demo-focus: #d4b8ff;
+  --mobile-tabbar-height: 0px;
+  color-scheme: dark;
+}
+html[data-design-preview],
+html[data-design-preview] body,
+html[data-design-preview] .app-shell {
+  background: var(--demo-canvas) !important;
+  color: var(--demo-text);
+  font-family: "Noto Sans JP", "Noto Sans CJK JP", system-ui, sans-serif !important;
+  overflow-x: hidden;
+}
+html[data-design-preview] .mio-dense-sidebar {
+  background: var(--demo-sidebar) !important;
+  width: 200px;
+  border-right: 1px solid #3d3548;
+}
+html[data-design-preview] .mobile-nav-bar,
+html[data-design-preview] .mobile-bottom-nav,
+html[data-design-preview] .mobile-bottom-navigation {
+  display: none !important;
+}
+html[data-design-preview] .r12-chrome {
+  background: var(--demo-canvas);
+  min-height: 56px;
+}
+@media (min-width: 1024px) {
+  html[data-design-preview] .r12-header-search,
+  html[data-design-preview] .r21-desktop-search {
+    display: flex !important;
+    min-height: 44px;
+    background: #1a1522;
+    border: 1px solid #4a4158;
+    border-radius: 999px;
+  }
+}
+html[data-design-preview] .demo-menu {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  color: var(--demo-text);
+}
+html[data-design-preview] .demo-banner,
+html[data-design-preview] .demo-neutral {
+  color: var(--demo-muted);
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 0 8px;
+}
+html[data-design-preview] .mio-hub-tabs > button {
+  min-height: 44px;
+  color: #c9c1d4;
+}
+html[data-design-preview] .mio-hub-tabs > button.active {
+  color: var(--demo-text);
+  border-color: var(--demo-brand);
+}
+html[data-design-preview] .mio-sortbar select,
+html[data-design-preview] .mio-inline-filters select {
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  background: var(--demo-raised);
+  color: var(--demo-text);
+  border: 1px solid #4a4158;
+  border-radius: 12px;
+  padding: 0 12px;
+}
+html[data-design-preview] .r14-tagbar > .mio-tagstrip,
+html[data-design-preview] .mio-tagstrip {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  overflow: visible !important;
+  max-height: none !important;
+  white-space: normal !important;
+}
+html[data-design-preview] .mio-tagstrip > button,
+html[data-design-preview] .r14-tagbar .mio-tagstrip > button,
+html[data-design-preview] .demo-selected-summary > button {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 44px !important;
+  padding: 0 14px !important;
+  border-radius: 999px;
+  background: var(--demo-raised);
+  color: var(--demo-text);
+  border: 1px solid #4a4158;
+  white-space: nowrap;
+}
+html[data-design-preview] .mio-tagstrip > button.active {
+  background: var(--demo-brand);
+  color: var(--demo-ink);
+  border-color: transparent;
+}
+html[data-design-preview] .mio-tagstrip > button.active::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 99px;
+  background: var(--demo-ink);
+}
+html[data-design-preview] .rulumi-mature-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+}
+html[data-design-preview] .rulumi-mature-control button {
+  min-width: 72px;
+  min-height: 44px;
+  border-radius: 999px;
+  background: #4a4158;
+  color: var(--demo-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 12px;
+}
+html[data-design-preview] .rulumi-mature-control button.enabled {
+  background: var(--demo-brand);
+  color: var(--demo-ink);
+}
+html[data-design-preview] .rulumi-mature-control button i {
+  width: 18px;
+  height: 18px;
+  border-radius: 99px;
+  background: var(--demo-text);
+}
+html[data-design-preview] .rulumi-mature-control button.enabled i {
+  background: var(--demo-ink);
+}
+html[data-design-preview] .mobile-explore-grid,
+html[data-design-preview] .mio-story-grid,
+html[data-design-preview] .mio-collection-grid,
+html[data-design-preview] .mio-hub-media-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+@media (min-width: 768px) {
+  html[data-design-preview] .mobile-explore-grid,
+  html[data-design-preview] .mio-story-grid,
+  html[data-design-preview] .mio-collection-grid,
+  html[data-design-preview] .mio-hub-media-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+@media (min-width: 1024px) {
+  html[data-design-preview] .mobile-explore-grid,
+  html[data-design-preview] .mio-story-grid,
+  html[data-design-preview] .mio-collection-grid,
+  html[data-design-preview] .mio-hub-media-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+@media (min-width: 1440px) {
+  html[data-design-preview] .mobile-explore-grid,
+  html[data-design-preview] .mio-story-grid,
+  html[data-design-preview] .mio-collection-grid,
+  html[data-design-preview] .mio-hub-media-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  }
+}
+@media (min-width: 1920px) {
+  html[data-design-preview] .mobile-explore-grid,
+  html[data-design-preview] .mio-story-grid,
+  html[data-design-preview] .mio-collection-grid,
+  html[data-design-preview] .mio-hub-media-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+}
+html[data-design-preview] .mio-character-card,
+html[data-design-preview] .mio-story-card,
+html[data-design-preview] .mio-collection-card,
+html[data-design-preview] .mio-hub-media-card {
+  aspect-ratio: auto !important;
+  background: var(--demo-surface) !important;
+  border: 1px solid #3d3548 !important;
+  border-radius: 16px;
+  min-width: 0;
+}
+html[data-design-preview] .mio-card-art,
+html[data-design-preview] .mio-story-art,
+html[data-design-preview] .mio-collection-art {
+  position: relative !important;
+  inset: auto !important;
+  aspect-ratio: 4 / 5;
+  height: auto !important;
+}
+html[data-design-preview] .mio-card-copy,
+html[data-design-preview] .mio-story-copy,
+html[data-design-preview] .mio-collection-copy {
+  position: relative !important;
+  margin-top: 0 !important;
+  min-height: 88px;
+  background: transparent !important;
+}
+html[data-design-preview] .mio-card-tags,
+html[data-design-preview] .mio-story-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  overflow: visible;
+  height: auto !important;
+  max-height: none !important;
+}
+html[data-design-preview] .mio-card-tags span,
+html[data-design-preview] .mio-story-tags span {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: unset;
+  max-width: none;
+  border-radius: 999px;
+  background: #322b3d;
+  color: #f2eef7;
+  padding: 2px 8px;
+}
+html[data-design-preview] .demo-18 {
+  position: absolute;
+  z-index: 6;
+  left: 8px;
+  right: auto;
+  top: auto;
+  bottom: 8px;
+  border-radius: 999px;
+  background: #e891b8;
+  color: #1a1024;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  padding: 2px 6px;
+}
+html[data-design-preview] .demo-placeholder {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  background: #1a1522;
+  color: #c9c1d4;
+  font-size: 10px;
+  padding: 2px 6px;
+}
+html[data-design-preview] .demo-cover-label {
+  position: absolute;
+  z-index: 5;
+  left: 6px;
+  bottom: 6px;
+  max-width: calc(100% - 12px);
+}
+html[data-design-preview] .mobile-explore-grid > .mio-character-card,
+html[data-design-preview] .mio-story-grid > .mio-story-card,
+html[data-design-preview] .mio-character-card,
+html[data-design-preview] .mio-story-card {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: hidden;
+}
+html[data-design-preview] .mobile-explore-grid > .mio-character-card .mio-card-art,
+html[data-design-preview] .mio-character-card .mio-card-art,
+html[data-design-preview] .mio-story-card .mio-story-art {
+  flex: 0 0 auto !important;
+  aspect-ratio: 4 / 5 !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+html[data-design-preview] .mio-character-card .mio-card-copy,
+html[data-design-preview] .mio-story-card .mio-story-copy,
+html[data-design-preview] .mobile-explore-grid > .mio-character-card .mio-card-copy {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  grid-template-rows: none !important;
+  gap: 4px !important;
+}
+html[data-design-preview] .mio-character-card .mio-card-tags,
+html[data-design-preview] .mio-story-card .mio-story-tags {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: flex-start !important;
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+html[data-design-preview] .mio-character-card .mio-card-tags span,
+html[data-design-preview] .mio-story-card .mio-story-tags span {
+  flex: 0 0 auto !important;
+  height: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+  line-height: 16px !important;
+}
+html[data-design-preview] .demo-empty {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+html[data-design-preview] .demo-empty button,
+html[data-design-preview] .demo-age-dialog button,
+html[data-design-preview] .demo-age-confirm {
+  min-height: 44px;
+  border-radius: 12px;
+  padding: 0 16px;
+}
+html[data-design-preview] .demo-age-confirm,
+html[data-design-preview] button.bg-pink-500,
+html[data-design-preview] .bg-pink-600,
+html[data-design-preview] .from-pink-500,
+html[data-design-preview] .from-pink-600 {
+  background: var(--demo-brand) !important;
+  background-image: none !important;
+  color: var(--demo-ink) !important;
+}
+html[data-design-preview] .mio-unlock-button,
+html[data-design-preview] .r16-drawer-create {
+  background: var(--demo-paid) !important;
+  color: var(--demo-ink) !important;
+}
+html[data-design-preview] :focus-visible {
+  outline: 2px solid var(--demo-focus);
+  outline-offset: 2px;
+}
+html[data-design-preview] .demo-age-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0;
+}
+html[data-design-preview] .demo-age-options button.selected {
+  background: var(--demo-brand);
+  color: var(--demo-ink);
+}
+@media (max-width: 1023px) {
+  html[data-design-preview] .demo-menu { display: inline-flex !important; width: 44px; height: 44px; min-width: 44px; min-height: 44px; }
+  html[data-design-preview] .r12-mobile-brand { position: static; height: auto; }
+  html[data-design-preview] .r12-chrome,
+  html[data-design-preview] .r12-chrome.compact {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    height: auto !important;
+    min-height: 56px;
+    padding: 8px 10px !important;
+    gap: 8px;
+  }
+  html[data-design-preview] .r21-desktop-search { display: none !important; }
+  html[data-design-preview] .mobile-navigation-drawer { display: flex !important; }
+  html[data-design-preview] .mio-dense-sidebar { display: none; }
+  html[data-design-preview] .app-main { padding-left: 12px !important; padding-right: 12px !important; }
+  html[data-design-preview] .mobile-explore-page { max-width: none !important; }
+  html[data-design-preview] .rulumi-hub-nav { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  html[data-design-preview] .mio-hub-tabs { flex-wrap: wrap; overflow: visible; width: 100%; gap: 4px 12px; }
+  html[data-design-preview] .mio-hub-tabs > button { flex: 0 0 auto; }
+  html[data-design-preview] .mio-hub-count { display: none; }
+  html[data-design-preview] .mio-sortbar {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+  }
+  html[data-design-preview] .mio-sort-tabs,
+  html[data-design-preview] .mio-inline-filters {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    width: auto !important;
+    flex: 1 1 0 !important;
+    min-width: 0;
+    gap: 6px;
+    padding: 0;
+  }
+  html[data-design-preview] .mio-inline-filters { flex: 2 1 0 !important; }
+  html[data-design-preview] .mio-inline-filters select,
+  html[data-design-preview] .mio-sortbar select {
+    flex: 1 1 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    padding: 0 22px 0 8px !important;
+    font-size: 14px !important;
+  }
+  html[data-design-preview] .mio-discovery-hub,
+  html[data-design-preview] .mio-tagbar,
+  html[data-design-preview] .mio-tagstrip { max-width: 100%; min-width: 0; }
+}

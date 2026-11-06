@@ -1,0 +1,132 @@
+.mio-profile-finance{display:none}
+@media(max-width:1023px){
+ /* Icons are fixed geometry, never flex spacers. */
+ .lucide{flex-shrink:0;flex-grow:0;vertical-align:middle;height:auto!important;aspect-ratio:1}
+ .mobile-app-header{padding-top:env(safe-area-inset-top)}
+ .mobile-app-header>div{gap:6px!important;padding-left:10px;padding-right:10px}
+ .mobile-app-header>div>button{min-width:0;min-height:38px;padding:0 3px;gap:6px;overflow:hidden}
+ .mio-mobile-wordmark{font-size:17px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.6px}
+ .mio-mobile-header-actions{gap:5px!important;flex-shrink:0}
+ .mio-mobile-header-actions>button{height:34px!important;min-height:34px!important;min-width:34px;width:34px;padding:0!important;display:flex;align-items:center;justify-content:center;border-radius:9px}
+ .mio-mobile-header-actions>button:has(.lucide-crown),.mio-mobile-header-actions>button:has(.lucide-gem){width:auto;min-width:48px;padding:0 7px!important;gap:4px}
+ .mio-mobile-header-actions>button:has(.lucide-crown)>span,.mio-mobile-header-actions>button:has(.lucide-gem)>span{font-size:9px;max-width:45px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+ .mobile-app-header button.mio-header-profile.mio-anime-avatar{width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;flex:0 0 32px;border-radius:50%!important}
+ .mio-header-profile>img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+ .mio-mobile-header-language{position:relative;display:grid;place-items:center;width:32px;height:34px;flex:0 0 32px;border:1px solid #70517a66;border-radius:9px;color:#d6addd;background:#38213d55}
+ .mio-mobile-header-language>select{position:absolute;inset:0;width:100%;height:100%;min-height:0;padding:0;opacity:0;cursor:pointer}
+ .mio-mobile-header-language:focus-within{outline:2px solid #d9a3d7;outline-offset:2px}
+ .mio-mobile-language{display:none!important}
+ .mio-top-header{margin:0 0 7px!important;padding:0!important}
+ .mio-top-header>:not(:first-child){margin-top:0!important}
+ .mio-top-header .mio-top-title-row{display:none!important}
+ .mio-top-header .mobile-explore-controls{display:grid;grid-template-columns:minmax(0,1fr) 32px!important;gap:7px!important}
+ .mio-top-header .mobile-explore-controls>label{min-width:0;height:34px}
+ .mio-top-header .mobile-explore-controls input{height:34px!important;min-height:34px!important;padding-left:33px!important;font-size:11px!important;border-radius:8px!important}
+ .mio-top-header .mobile-explore-controls>label>svg{width:14px!important;height:14px!important;left:11px}
+ .mio-top-header .mobile-explore-controls>button{height:34px;min-height:34px!important;min-width:32px;width:32px;padding:0;border-radius:8px}
+ .mio-top-header .mobile-explore-controls>button>svg{width:15px;height:15px}
+ .mio-hub-tabs{gap:15px!important;margin-bottom:9px!important;scrollbar-width:none}
+ .mio-hub-tabs>button{font-size:12px!important;min-height:36px!important;height:36px;padding:0 0 7px!important;gap:4px!important;flex:0 0 auto}
+ .mio-hub-tabs>button>svg{width:14px!important;height:14px!important;min-width:14px}
+ .mio-sortbar{gap:6px;margin-bottom:8px;flex-wrap:nowrap!important;align-items:center}
+ .mio-sort-tabs{gap:0!important}
+ .mio-sort-tabs>button{min-height:29px!important;padding:5px 7px!important;font-size:10px!important}
+ .mio-inline-filters{gap:5px;min-width:0;flex-shrink:1}
+ .mio-inline-filters select{font-size:9px!important;max-width:84px;padding:4px 5px!important;min-height:29px!important;height:29px}
+ .mio-hub-count{font-size:9px;white-space:nowrap}
+ .mio-tagbar,.mio-discovery-hub .mio-tagbar{gap:5px;margin:0 0 10px!important;min-height:27px}
+ .mio-tagstrip{gap:5px!important;min-width:0}
+ .mio-tagstrip>button{font-size:9px!important;min-height:26px!important;height:26px!important;min-width:0!important;padding:4px 7px!important;line-height:16px;flex-shrink:0;border-radius:5px}
+ .mio-tag-trigger{min-width:0!important;width:auto!important;max-width:83px!important;height:26px!important;min-height:26px!important;padding:4px 6px!important;gap:4px!important;font-size:9px!important;line-height:16px;border-radius:5px}
+ .mio-tag-trigger>svg{width:11px!important;height:11px!important}
+ .mio-tag-dropdown{width:min(300px,calc(100vw - 24px));max-height:55dvh;right:0}
+ .mio-tag-dropdown button{min-height:36px!important;font-size:11px}
+ /* Override the generic mobile button minimum only for fixed icon controls. */
+ .mio-character-card>div:has(>div.pointer-events-auto) button,.mio-story-save{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;max-width:28px;max-height:28px;padding:0!important;aspect-ratio:1;border-radius:50%!important;display:grid!important;place-items:center;flex:none}
+ .mio-character-card>div:has(>div.pointer-events-auto) button svg,.mio-story-save>svg{width:14px!important;height:14px!important;display:block}
+ .mio-social-row>a,.mio-social-row>button{min-height:31px!important;min-width:31px;width:31px;height:31px;aspect-ratio:1;flex:none}
+ .mio-social-row svg{width:16px;height:16px}
+ .mobile-nav-bar{padding-bottom:env(safe-area-inset-bottom);border-top:1px solid #65436a!important}
+ .mio-mobile-nav-items{height:60px!important;gap:0!important;padding:0 5px!important;width:100%;align-items:stretch}
+ .mio-mobile-nav-items>button{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;min-width:0!important;min-height:60px!important;height:60px;padding:7px 2px!important;margin:0!important;border-radius:0;position:relative}
+ .mio-mobile-nav-items>button>svg{display:block;width:20px!important;height:20px!important;flex:0 0 20px;max-width:none}
+ .mio-mobile-nav-items>button>span{font-size:10px;line-height:13px;max-width:100%;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;font-weight:500}
+ .mio-mobile-nav-items>button[aria-current=page]{color:#edacdf;background:#b56da50c}
+ .mio-mobile-nav-items>button[aria-current=page]:before{content:'';position:absolute;top:0;width:23px;height:2px;background:#e19ed5;border-radius:2px}
+ /* Profile header and two clear financial entry points. */
+ .mio-personal-center{padding-bottom:10px}
+ .mio-profile-banner{position:relative;display:block!important;padding:20px 16px 16px!important;min-height:0!important;border-radius:14px!important;overflow:hidden}
+ .mio-profile-identity{display:flex!important;align-items:center;gap:13px!important;padding-right:36px;min-width:0}
+ .mio-profile-avatar{width:60px!important;height:60px!important;min-width:60px;flex:0 0 60px;aspect-ratio:1;align-self:center}
+ .mio-profile-avatar>img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+ .mio-profile-identity>div:last-child{min-width:0;flex:1}
+ .mio-profile-identity h1{font-size:22px!important;line-height:1.4!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+ .mio-profile-identity p{font-size:11px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .mio-profile-identity .mio-eyebrow{font-size:8px}
+ .mio-profile-settings{position:absolute!important;top:16px!important;right:12px!important;width:32px!important;min-width:32px!important;height:32px!important;min-height:32px!important;padding:0!important;display:grid!important;place-items:center;overflow:hidden;font-size:0!important;border-radius:8px!important;gap:0!important}
+ .mio-profile-settings svg{width:17px!important;height:17px!important}
+ .mio-profile-preferences{display:flex!important;gap:6px!important;align-items:center;flex-wrap:wrap;margin-top:17px!important;position:relative;z-index:1}
+ .mio-profile-preferences>span{font-size:10px;padding:5px 8px;border-radius:6px;min-height:27px;display:flex;align-items:center}
+ .mio-profile-preferences>button{min-height:27px!important;padding:5px 8px!important;font-size:10px!important;border-radius:6px;white-space:nowrap}
+ .mio-profile-constellation{opacity:.25;pointer-events:none}
+ .mio-profile-finance{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:13px 0 10px}
+ .mio-profile-finance>button{display:flex;align-items:center;gap:9px;text-align:left;border-radius:12px;min-height:96px;padding:15px 12px;border:1px solid #a28348;color:#fce9b5;background:linear-gradient(130deg,#685035,#3c2a2d);min-width:0;position:relative;overflow:hidden}
+ .mio-profile-finance>button:after{content:'';position:absolute;right:-13px;top:-25px;width:75px;height:75px;border:1px solid #ffe3a322;border-radius:50%;pointer-events:none}
+ .mio-profile-finance>button>svg:first-child{width:22px;height:22px;flex:0 0 22px;align-self:flex-start;margin-top:3px}
+ .mio-profile-finance>button>svg:last-child{width:14px;height:14px;position:absolute;right:10px;bottom:13px}
+ .mio-profile-finance>button>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+ .mio-profile-finance small{font-size:10px;line-height:1.4;color:#ebd19a;font-weight:500}
+ .mio-profile-finance strong{font-size:21px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:650}
+ .mio-profile-finance em{font-size:9px;font-style:normal;color:#e9b7df;line-height:1.3}
+ .mio-profile-finance>button.mio-vip-entry{border-color:#aa6baf;background:linear-gradient(130deg,#6c3f7f,#362343);color:#ffe1fc}
+ .mio-profile-finance .mio-vip-entry small{color:#ecc0ed}
+ .mio-profile-finance .mio-vip-entry strong{font-size:14px}
+ .mio-profile-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin:0 0 17px!important}
+ .mio-profile-stats>div:nth-child(-n+2){display:none!important}
+ .mio-profile-stats>div{display:grid!important;grid-template-columns:20px minmax(0,1fr)!important;column-gap:9px!important;row-gap:3px;padding:12px 14px!important;min-height:67px;overflow:hidden}
+ .mio-profile-stats>div>svg{width:18px!important;height:18px!important;grid-column:1;grid-row:1 / 3;align-self:center;max-width:none}
+ .mio-profile-stats strong{font-size:18px!important;line-height:1.3;grid-column:2;grid-row:1;min-width:0}
+ .mio-profile-stats span{grid-column:2;grid-row:2;font-size:10px!important;margin:0}
+ .mio-profile-stats button{width:25px;height:25px;min-width:25px!important;min-height:25px!important;display:grid;place-items:center;padding:0}
+ .mio-profile-shortcuts{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ .mio-profile-shortcuts>button{gap:8px!important;padding:12px 10px!important;min-height:66px!important;min-width:0}
+ .mio-profile-shortcuts>button>span{width:30px!important;height:30px!important;flex:0 0 30px;aspect-ratio:1}
+ .mio-profile-shortcuts>button>span>svg{width:17px!important;height:17px!important;max-width:none}
+ .mio-profile-shortcuts>button>svg{width:13px!important;height:13px!important}
+ .mio-profile-shortcuts strong{font-size:11px!important;line-height:1.4;min-width:0;overflow-wrap:anywhere;font-weight:500}
+ .mio-profile-history>button>img{flex:0 0 35px;width:35px;height:42px}
+ .mio-profile-history>button>svg{width:17px;height:17px}
+ .mio-profile-history>button>span{font-size:11px!important}
+ .mio-profile-tabs{gap:19px!important;overflow-x:auto;scrollbar-width:none}
+ .mio-profile-tabs>button{font-size:11px!important;min-height:38px!important;flex-shrink:0}
+ /* Edge-to-edge readers sit above the app chrome and preserve natural media ratios. */
+ .mio-hub-overlay:has(.mio-reader-comics),.mio-hub-overlay:has(.mio-reader-videos){padding:0!important;align-items:stretch!important;justify-content:stretch!important;place-items:stretch!important;z-index:200!important;background:#110a1b!important;backdrop-filter:none}
+ .mio-hub-dialog.mio-reader-comics,.mio-hub-dialog.mio-reader-videos{width:100%!important;max-width:none!important;height:100dvh!important;max-height:100dvh!important;margin:0!important;border:0!important;border-radius:0!important;padding:calc(14px + env(safe-area-inset-top)) 12px calc(16px + env(safe-area-inset-bottom))!important;overflow-y:auto!important;overscroll-behavior:contain;background:#110b1a!important;box-sizing:border-box;scrollbar-width:none}
+ .mio-reader-comics>.mio-hub-close,.mio-reader-videos>.mio-hub-close{position:sticky!important;float:right;top:env(safe-area-inset-top);right:0;width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;display:grid;place-items:center;padding:0!important;z-index:5;border:1px solid #ffffff25;background:#211729e8;border-radius:50%}
+ .mio-reader-comics>.mio-hub-close>svg,.mio-reader-videos>.mio-hub-close>svg{width:18px!important;height:18px!important}
+ .mio-reader-comics>header,.mio-reader-videos>header{padding-right:42px;min-height:42px}
+ .mio-reader-comics h2,.mio-reader-videos h2{font-size:20px!important;font-weight:600;line-height:1.4;margin:3px 0 6px}
+ .mio-reader-toolbar{gap:9px;margin:15px 0 12px}
+ .mio-reader-toolbar>div{min-width:0;overflow-x:auto;flex-wrap:nowrap!important;scrollbar-width:none;gap:6px}
+ .mio-reader-toolbar button,.mio-reader-comics .mio-studio-group-tabs>button{min-height:32px!important;padding:6px 10px!important;flex-shrink:0;font-size:10px;white-space:nowrap}
+ .mio-reader-toolbar>span{font-size:11px;white-space:nowrap;flex-shrink:0}
+ .mio-reader-comics .mio-reader-stage{border-radius:0!important;margin-left:-12px;margin-right:-12px;border:0;background:#0d0813}
+ .mio-reader-comics .mio-comic-pages{padding:0!important;gap:5px!important;border-radius:0;display:flex!important;flex-direction:column!important}
+ .mio-reader-comics .mio-comic-panel{border-radius:0!important;width:100%;margin:0}
+ .mio-reader-comics .mio-comic-panel img{width:100%!important;height:auto!important;max-height:none!important;object-fit:contain!important;aspect-ratio:auto!important;display:block}
+ .mio-reader-comics .mio-created-comic-panels{margin:14px -12px 0;padding:0;border-radius:0;gap:5px}
+ .mio-reader-comics .mio-created-comic-panels img{width:100%;height:auto;max-height:none;object-fit:contain}
+ .mio-reader-comics .mio-comic-panel figcaption{font-size:12px;line-height:1.8;padding:14px 15px}
+ .mio-reader-videos .mio-reader-stage{min-height:calc(100dvh - 230px - env(safe-area-inset-top) - env(safe-area-inset-bottom));height:calc(100dvh - 230px - env(safe-area-inset-top) - env(safe-area-inset-bottom));border:0!important;border-radius:0!important;background:#000;margin:0 -12px;display:flex;align-items:center;justify-content:center;position:relative}
+ .mio-reader-videos .mio-reader-stage>video{width:100%!important;height:100%!important;max-height:none!important;object-fit:contain!important;display:block;border-radius:0}
+ .mio-reader-videos.mio-media-detail>video{display:block;width:calc(100% + 24px)!important;height:calc(100dvh - 140px)!important;max-height:none!important;margin:15px -12px 0;object-fit:contain;background:#000;border-radius:0}
+ .mio-reader-nav{gap:18px;justify-content:center;margin:15px 0 10px}
+ .mio-reader-nav>button{width:34px!important;height:34px!important;min-height:34px!important;min-width:34px!important;aspect-ratio:1;padding:0!important;display:grid;place-items:center}
+ .mio-reader-nav>button>svg{width:18px;height:18px}
+ .mio-reader-free-label{position:absolute;top:10px!important;bottom:auto!important;left:auto!important;right:10px!important;display:block;width:max-content;max-width:calc(100% - 24px);min-height:0!important;pointer-events:none}
+ .mio-reader-videos .mio-paywall{min-height:300px;width:100%;padding:30px 18px}
+ .mio-unlock-confirm{position:fixed!important;left:12px!important;right:12px!important;bottom:calc(12px + env(safe-area-inset-bottom))!important;top:auto!important;transform:none!important;width:auto!important;z-index:8;border-radius:14px}
+ .mio-preview-notice{pointer-events:none;bottom:calc(67px + env(safe-area-inset-bottom))!important;font-size:7px!important;max-width:80vw;opacity:.55}
+ body:has(.mio-reader-comics) .mio-preview-notice,body:has(.mio-reader-videos) .mio-preview-notice{display:none}
+}
+@media(max-width:360px){.mio-mobile-wordmark{font-size:15px!important}.mio-mobile-header-actions{gap:3px!important}.mio-inline-filters select{max-width:71px!important}.mio-sort-tabs>button{font-size:9px!important;padding:5px!important}.mio-hub-tabs{gap:12px!important}.mio-hub-tabs>button{font-size:11px!important}.mio-profile-finance>button{padding:12px 9px;gap:7px}.mio-profile-finance strong{font-size:18px}.mio-profile-finance>button>svg:first-child{width:19px;height:19px;flex-basis:19px}}
