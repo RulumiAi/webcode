@@ -176,6 +176,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
         )}
         <span className="mio-card-chatcount" title={`${hubCopy(locale).heat}: ${character.chatCount}`} aria-label={`${hubCopy(locale).heat}: ${formatHeat(character.chatCount,locale)}`}><Flame size={12}/>{formatHeat(character.chatCount,locale)}</span>
         {(isMaturePreviewCharacter(character.id) || character.tags.includes('demo_adult') || character.filterTags?.some((tag) => tag.slug === 'demo_adult')) && <span className="demo-18">18+</span>}
+        <span className="demo-placeholder demo-cover-label">{locale === 'ja' ? '既存素材（仮）' : locale === 'zh-CN' ? '现有素材（占位）' : 'Existing asset (placeholder)'}</span>
         {/* Softened Dark Gradient Overlay for clearer, brighter character visuals */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 via-60% to-transparent opacity-80 transition-opacity" />
       </div>
@@ -232,7 +233,6 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({
           {character.subtitle}
         </p>
 
-        <span className="demo-placeholder">{locale === 'ja' ? '既存素材（仮）' : locale === 'zh-CN' ? '现有素材（占位）' : 'Existing asset (placeholder)'}</span>
         <FittedTags labels={(character.filterTags?.length ? character.filterTags.map((tag) => getCharacterFilterTagLabel(tag, locale, t)) : character.tags.map((tag) => getCharacterFilterTagLabel({ slug: tag, label: tag }, locale, t))).filter(Boolean)} />
         {/* Stats Row & Creator Handle */}
         <div className="mobile-explore-card-stats flex flex-col items-start gap-1 border-t border-white/10 pt-1 text-[10px] font-medium text-zinc-400 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between sm:text-[11px]">
